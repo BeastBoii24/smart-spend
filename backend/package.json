@@ -19,6 +19,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.18.2",
-    "smartspend-finance-hub": "file:../.."
+    "bcryptjs": "^2.4.3",
+    "smartspend-finance-hub": "file:.."
   }
 }

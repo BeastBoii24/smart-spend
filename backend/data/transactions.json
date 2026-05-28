@@ -1,0 +1,119 @@
+[
+  {
+    "id": "txn001",
+    "userId": "demo123",
+    "amount": 60000,
+    "type": "income",
+    "category": "Salary",
+    "note": "Monthly salary for April",
+    "date": "2026-04-01"
+  },
+  {
+    "id": "txn002",
+    "userId": "demo123",
+    "amount": 4500,
+    "type": "expense",
+    "category": "Food",
+    "note": "Groceries and dining",
+    "date": "2026-04-05"
+  },
+  {
+    "id": "txn003",
+    "userId": "demo123",
+    "amount": 1800,
+    "type": "expense",
+    "category": "Transport",
+    "note": "Fuel and metro recharge",
+    "date": "2026-04-06"
+  },
+  {
+    "id": "txn004",
+    "userId": "demo123",
+    "amount": 15000,
+    "type": "expense",
+    "category": "Rent",
+    "note": "Monthly rent",
+    "date": "2026-04-03"
+  },
+  {
+    "id": "txn005",
+    "userId": "demo123",
+    "amount": 3000,
+    "type": "expense",
+    "category": "Entertainment",
+    "note": "Movies and games",
+    "date": "2026-04-10"
+  },
+  {
+    "id": "txn006",
+    "userId": "demo123",
+    "amount": 12000,
+    "type": "income",
+    "category": "Freelance",
+    "note": "Freelance website project",
+    "date": "2026-04-15"
+  },
+  {
+    "id": "txn007",
+    "userId": "demo123",
+    "amount": 75000,
+    "type": "income",
+    "category": "Salary",
+    "note": "May Paycheck",
+    "date": "2026-05-01"
+  },
+  {
+    "id": "txn008",
+    "userId": "demo123",
+    "amount": 5800,
+    "type": "expense",
+    "category": "Food",
+    "note": "Family dinner and monthly groceries",
+    "date": "2026-05-04"
+  },
+  {
+    "id": "txn009",
+    "userId": "demo123",
+    "amount": 2500,
+    "type": "expense",
+    "category": "Transport",
+    "note": "Uber rides and metro recharge",
+    "date": "2026-05-08"
+  },
+  {
+    "id": "txn010",
+    "userId": "demo123",
+    "amount": 15000,
+    "type": "expense",
+    "category": "Rent",
+    "note": "May Rent payment",
+    "date": "2026-05-03"
+  },
+  {
+    "id": "txn011",
+    "userId": "demo123",
+    "amount": 1200,
+    "type": "expense",
+    "category": "Utilities",
+    "note": "Electricity and Broadband bills",
+    "date": "2026-05-12"
+  },
+  {
+    "id": "txn012",
+    "userId": "demo123",
+    "amount": 4000,
+    "type": "expense",
+    "category": "Shopping",
+    "note": "New formal clothes",
+    "date": "2026-05-15"
+  },
+  {
+    "id": "txn013",
+    "userId": "demo123",
+    "amount": 8000,
+    "type": "income",
+    "category": "Freelance",
+    "note": "Consulting advisory fee",
+    "date": "2026-05-20"
+  }
+]

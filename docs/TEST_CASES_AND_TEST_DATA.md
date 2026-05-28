@@ -1,37 +1,102 @@
-# SmartSpend Test Cases and Test Data
+# SmartSpend Academic Test Cases and Test Data Guide
 
-## Suggested Test Data
+This document presents a comprehensive test suite mapped specifically for academic evaluation and quality assurance verification of the SmartSpend Personal Finance Management Hub.
 
-- Demo user: `demo@example.com / demo123`
-- New user 1: `Rahul Sharma / rahul.smartspend@gmail.com / Rahul@123`
-- New user 2: `Priya Singh / priya.smartspend@gmail.com / Priya@123`
-- Income sample: `60000 / income / Salary / April salary / 2026-04-01`
-- Expense sample 1: `450 / expense / Food / Lunch with friends / 2026-04-05`
-- Expense sample 2: `1800 / expense / Transport / Metro recharge / 2026-04-06`
-- Budget sample: `Food / 6000`
-- Goal sample: `Emergency Fund / 100000 / 25000 / 2026-12-31`
+---
 
-## Test Cases
+## 1. Seeded High-Fidelity Test Data
 
-| Test Case ID | Module Name | Action Performed | Input Data | Expected Result | Actual Result | Status |
-|---|---|---|---|---|---|---|
-| TC-01 | User Registration | Register a new user with valid details | Rahul Sharma, rahul.smartspend@gmail.com, Rahul@123 | Account is created successfully and the user reaches the dashboard | __________ | __________ |
-| TC-02 | User Registration | Register using an existing email address | demo@example.com, demo123 | Registration is blocked and duplicate email message is shown | __________ | __________ |
-| TC-03 | User Registration | Register with password and confirm password mismatch | Priya@123 and Priya@124 | Form validation stops submission and informs the user about mismatch | __________ | __________ |
-| TC-04 | User Login | Login with valid credentials | demo@example.com, demo123 | User logs in successfully and dashboard is displayed | __________ | __________ |
-| TC-05 | User Login | Login with invalid password | demo@example.com, wrong123 | Login fails and invalid credentials message is shown | __________ | __________ |
-| TC-06 | Dashboard | Open dashboard with sample user data | Demo user with seeded April data | Balance, income, expenses, savings rate, charts, and recent transactions are visible | __________ | __________ |
-| TC-07 | Add Transaction | Add a valid income transaction | 60000, income, Salary, April salary, 2026-04-01 | Transaction is saved and dashboard totals update | __________ | __________ |
-| TC-08 | Add Transaction | Add a valid expense transaction | 450, expense, Food, Lunch with friends, 2026-04-05 | Transaction appears in recent transactions and reports | __________ | __________ |
-| TC-09 | Add Transaction | Submit without required fields | blank amount and category | Validation message prevents form submission | __________ | __________ |
-| TC-10 | View Transactions | Open transactions section after multiple entries | 5 mixed entries | Transactions list is sorted, readable, and shows correct amounts and categories | __________ | __________ |
-| TC-11 | View Transactions | Delete a transaction | Delete one Food expense | Record is removed and totals refresh accordingly | __________ | __________ |
-| TC-12 | Budget Management | Create a monthly budget | Food, 6000 | Budget card appears with current spent amount | __________ | __________ |
-| TC-13 | Budget Management | Exceed a budget | Food budget 6000 with total Food expense 6500 | Budget usage indicates overspending or high usage | __________ | __________ |
-| TC-14 | Goals Management | Add a savings goal | Emergency Fund, 100000, 25000, 2026-12-31 | Goal is saved and progress bar appears | __________ | __________ |
-| TC-15 | Goals Management | Delete a savings goal | Delete Emergency Fund goal | Goal disappears from the list successfully | __________ | __________ |
-| TC-16 | EMI Calculator | Calculate EMI using valid values | 500000, 8.5, 5 years | EMI, total interest, and total payable are calculated | __________ | __________ |
-| TC-17 | Reports | Review report summary after transactions exist | Salary plus multiple expenses | Income, expenses, net savings, and category breakdown are shown correctly | __________ | __________ |
-| TC-18 | Import / Export Data | Export user data | Existing demo data | JSON backup file downloads successfully | __________ | __________ |
-| TC-19 | Import / Export Data | Import sample backup JSON | `public/backend/data/sample-import.json` | Imported transactions, budgets, and goals appear in the application | __________ | __________ |
-| TC-20 | Clear Data | Clear all user data | Demo user data | Transactions, budgets, and goals are removed for that user | __________ | __________ |
+Use the following inputs to verify boundary conditions, error handling, and visual calculations:
+
+- **Primary Demo Account (Pre-Seeded):**
+  - Email: `demo@example.com`
+  - Password: `demo123` (Auto-upgrades to secure `bcryptjs` hash on login)
+
+- **Registration Test Accounts:**
+  - Name: `Rahul Sharma` | Email: `rahul.smartspend@gmail.com` | Password: `Rahul@123`
+  - Name: `Priya Singh` | Email: `priya.smartspend@gmail.com` | Password: `Priya@123`
+
+- **Financial Transactions Data:**
+  - **Income 1:** `60000 / Salary / Monthly paycheck / 2026-04-01`
+  - **Expense 1 (Food):** `450 / Food / Dining out / 2026-04-05`
+  - **Expense 2 (Travel):** `1800 / Transport / Monthly pass / 2026-04-06`
+
+- **Budget Baseline Data:**
+  - **Category:** `Food` | **Limit:** `6000`
+
+- **Savings Goal Data:**
+  - **Name:** `Emergency Fund` | **Target:** `100000` | **Saved:** `25000` | **Date:** `2026-12-31`
+
+---
+
+## 2. Comprehensive Test Suite
+
+### User Registration & Security Access
+1. **Action:** Register with valid details: `Rahul Sharma`, `rahul.smartspend@gmail.com`, `Rahul@123`
+   → **Expected Result:** Database creates record, hashes the password via `bcryptjs`, and redirects to Dashboard.
+2. **Action:** Register using an already registered email: `demo@example.com`, `demo123`
+   → **Expected Result:** REST API returns `400 Bad Request` and UI displays a red toast error: "Email is already registered".
+3. **Action:** Register with mismatched password confirmation fields
+   → **Expected Result:** React form validator blocks submission and triggers standard alerts: "Please make sure both password fields match."
+4. **Action:** Register with weak password containing fewer than 6 characters: `12345`
+   → **Expected Result:** Form validation halts transmission and alerts: "Password must be at least 6 characters long."
+5. **Action:** Login with legacy plain-text seeded demo account: `demo@example.com`, `demo123`
+   → **Expected Result:** Server automatically verifies login, hashes plain-text to modern `bcryptjs` structure, saves state, and forwards user.
+6. **Action:** Login with invalid email or incorrect credentials
+   → **Expected Result:** REST API returns `401 Unauthorized` and displays toast alert: "Invalid email or password".
+
+### Ledger & Transactions Validation
+7. **Action:** Record valid income transaction: `60000`, `income`, `Salary`, `2026-04-01`
+   → **Expected Result:** Transaction is safely saved, dashboard totals increase balance, and trend chart renders node.
+8. **Action:** Record valid expense transaction: `450`, `expense`, `Food`, `2026-04-05`
+   → **Expected Result:** Transaction registers, updates statistics, and reflects in category breakdown.
+9. **Action:** Submit new transaction form leaving amount or category empty
+   → **Expected Result:** UI blocks submission, highlighting invalid inputs with local warning indicators.
+10. **Action:** Input negative or zero values in transaction amount: `-450`
+    → **Expected Result:** Form input validation restricts negative typing, or backend API rejects with `400 Bad Request`.
+11. **Action:** Delete a transaction from the responsive ledger table/grid
+    → **Expected Result:** Prompt asks for confirmation, record is wiped from database, and charts re-render.
+
+### Monthly Budget Restrictions
+12. **Action:** Configure a monthly category budget: `Food`, limit `6000`
+    → **Expected Result:** Budget card displays progress bar gauge indicating percent usage.
+13. **Action:** Record an expense exceeding the configured budget (e.g. food bill `6500`)
+    → **Expected Result:** Budget summary card shifts color to bright red pulsing state, alerting user of overspending.
+14. **Action:** Delete an active budget configuration
+    → **Expected Result:** Wipes entry and restores default clean category placeholder state.
+
+### Financial Goals Progress
+15. **Action:** Configure target goal: `Emergency Fund`, target `100000`, saved `25000`
+    → **Expected Result:** Renders interactive goal widget displaying exactly `25%` progress on progress bar.
+16. **Action:** Input saved amount higher than the target amount (e.g., saved `120000` / target `100000`)
+    → **Expected Result:** Progress bar cleanly clamps to `100%` width without visual layout overflow.
+17. **Action:** Delete configured savings goal
+    → **Expected Result:** Entry is permanently wiped from `goals.json` and clears from the goals list.
+
+### EMI Loan Calculator
+18. **Action:** Calculate EMI using valid values: principal `500000`, interest `8.5%`, tenure `5 years`
+    → **Expected Result:** REST API returns monthly EMI `10,258`, total interest `115,487`, and total payable `615,487`.
+19. **Action:** Calculate EMI leaving inputs blank or entering zero/negative values
+    → **Expected Result:** Frontend blocks submission and raises red toast: "All loan values must be positive non-zero numbers."
+
+### Analytical Reports & Charts
+20. **Action:** Review category breakdown and six-month trend charts after multiple transactions are recorded
+    → **Expected Result:** Pie charts automatically calculate precise percentages, and line chart updates with color-coded paths.
+21. **Action:** Hover cursor (or touch tap on mobile) over chart elements
+    → **Expected Result:** Micro-animations fire, and custom-styled black tooltips display formatted currencies.
+
+### Database Backup utilities
+22. **Action:** Trigger export ledger command
+    → **Expected Result:** Server generates aggregated payload and downloads `smartspend_backup_YYYY-MM-DD.json` file.
+23. **Action:** Restore ledger using valid backup file
+    → **Expected Result:** Frontend reads file, calls `/api/import` REST endpoint, and updates dashboard view instantly.
+24. **Action:** Attempt to restore using a corrupt or modified non-JSON text file
+    → **Expected Result:** System handles parsing error gracefully and toasts: "Unable to import data. Please check the JSON file."
+25. **Action:** Trigger "Wipe Account Database"
+    → **Expected Result:** Warning prompt triggers, and confirmation wipes all transactions, budgets, and goals for the session user.
+
+### Responsive UI scaling
+26. **Action:** Resize browser viewport to `375px` (Mobile) and scroll dashboard
+    → **Expected Result:** Sidebar drawer collapses into full menu icon, grids stack to a single clean column, and tables render as readable cards with no horizontal scrolling.
+27. **Action:** Resize browser viewport to `768px` (Tablet) and check dashboard
+    → **Expected Result:** Visual grid aligns into a balanced double-column setup, and header items adapt cleanly.

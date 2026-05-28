@@ -19,5 +19,26 @@
     "category": "Entertainment",
     "limit": 5000,
     "month": "2026-04"
+  },
+  {
+    "id": "bud004",
+    "userId": "demo123",
+    "category": "Food",
+    "limit": 8000,
+    "month": "2026-05"
+  },
+  {
+    "id": "bud005",
+    "userId": "demo123",
+    "category": "Transport",
+    "limit": 3000,
+    "month": "2026-05"
+  },
+  {
+    "id": "bud006",
+    "userId": "demo123",
+    "category": "Shopping",
+    "limit": 5000,
+    "month": "2026-05"
   }
 ]
