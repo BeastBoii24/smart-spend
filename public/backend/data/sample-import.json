@@ -1,0 +1,51 @@
+{
+  "transactions": [
+    {
+      "id": "imp-txn-001",
+      "amount": 42000,
+      "type": "income",
+      "category": "Salary",
+      "note": "Imported sample salary",
+      "date": "2026-04-01"
+    },
+    {
+      "id": "imp-txn-002",
+      "amount": 2800,
+      "type": "expense",
+      "category": "Food",
+      "note": "Imported grocery bill",
+      "date": "2026-04-04"
+    },
+    {
+      "id": "imp-txn-003",
+      "amount": 1600,
+      "type": "expense",
+      "category": "Transport",
+      "note": "Imported travel pass",
+      "date": "2026-04-08"
+    }
+  ],
+  "budgets": [
+    {
+      "id": "imp-budget-001",
+      "category": "Food",
+      "limit": 5000,
+      "month": "2026-04"
+    },
+    {
+      "id": "imp-budget-002",
+      "category": "Transport",
+      "limit": 2500,
+      "month": "2026-04"
+    }
+  ],
+  "goals": [
+    {
+      "id": "imp-goal-001",
+      "name": "Vacation Fund",
+      "targetAmount": 60000,
+      "currentAmount": 12000,
+      "targetDate": "2026-11-30"
+    }
+  ]
+}

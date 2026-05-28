@@ -1,0 +1,23 @@
+[
+  {
+    "id": "bud001",
+    "userId": "demo123",
+    "category": "Food",
+    "limit": 6000,
+    "month": "2026-04"
+  },
+  {
+    "id": "bud002",
+    "userId": "demo123",
+    "category": "Transport",
+    "limit": 3000,
+    "month": "2026-04"
+  },
+  {
+    "id": "bud003",
+    "userId": "demo123",
+    "category": "Entertainment",
+    "limit": 5000,
+    "month": "2026-04"
+  }
+]

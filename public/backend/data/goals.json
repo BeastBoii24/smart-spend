@@ -1,0 +1,20 @@
+[
+  {
+    "id": "goal001",
+    "userId": "demo123",
+    "name": "Emergency Fund",
+    "targetAmount": 100000,
+    "currentAmount": 45000,
+    "targetDate": "2026-12-31",
+    "createdAt": "2026-04-01T00:00:00.000Z"
+  },
+  {
+    "id": "goal002",
+    "userId": "demo123",
+    "name": "New Laptop",
+    "targetAmount": 80000,
+    "currentAmount": 25000,
+    "targetDate": "2026-09-30",
+    "createdAt": "2026-04-02T00:00:00.000Z"
+  }
+]
