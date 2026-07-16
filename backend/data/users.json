@@ -6,18 +6,4 @@
     "password": "demo123",
     "createdAt": "2026-04-01T10:00:00.000Z"
   },
-  {
-    "id": "mo690zkre21kz01d4sk",
-    "name": "Usha Shukla",
-    "email": "demo@smartmeal.com",
-    "password": "Whoami@06",
-    "createdAt": "2026-04-19T20:59:05.883Z"
-  },
-  {
-    "id": "mpq01ppxr0xc5fcjpd",
-    "name": "Aditya Bisht",
-    "email": "adityabisht.ger@gmail.com",
-    "password": "@Bisht1014",
-    "createdAt": "2026-05-28T21:22:49.077Z"
-  }
-]
+  
